@@ -1,0 +1,68 @@
+// general spacing
+$pad:       1cm;
+$cell:      10px;
+
+// typography
+$font-style: normal;
+$font-variant: normal;
+$font-weight: normal;
+$font-color: black;
+$font-size: 12pt; //12pt
+$line-height: $font-size*1.75;
+$font-family: monaco,Consolas,Lucida Console,monospace;
+
+html {
+  font: $font-style $font-variant $font-weight #{$font-size}/#{$line-height} $font-family;
+}
+
+body {
+    margin: $pad;
+}
+
+div {
+	margin-bottom: $cell * 4;
+}
+
+p, img, footer {
+    margin-top: $cell;
+    margin-bottom: $cell;
+}
+
+img {
+    max-width: 850px;
+    max-height: 850px;
+}
+
+footer {
+    text-align: center;
+    font-style: italic;
+}
+
+.whitespace {
+	color: rgb(211, 211, 211);
+	opacity: 0.0;
+}
+
+.noun {
+	color: rgb(255, 0, 0);
+}
+
+.adjective {
+	color: rgb(0, 0, 255);
+}
+
+.verb {
+	color: rgb(0, 128, 0);
+}
+
+.adverb {
+	color: rgb(255, 165, 0);
+}
+
+.symbol {
+	color: rgb(128, 0, 128);
+}
+
+.background {
+	color: rgb(0,0,0);
+}
