@@ -14,7 +14,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 
 import argparse
 
-class Ghostses:
+class Opera:
 
     def __init__(self, filename):
         """ make a ghostses object
@@ -27,9 +27,9 @@ class Ghostses:
 
     def getSentences(self):
         """ tokenize corpus by sentence """
-        self.sentences = sent_tokenize(self.corpus)        
+        self.sentences = sent_tokenize(self.corpus)
 
-    
+
     def getWords(self, preserveSpaces = True):
         """ tokenize corpus sentences by word """
         self.words = []
