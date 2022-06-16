@@ -1,9 +1,4 @@
-"""
-
-in progress refactor and development of ghostses.py for future operas or whatever
-
-"""
-
+from time import sleep
 from datetime import datetime
 from pathlib import Path
 import os
@@ -11,6 +6,7 @@ import itertools
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk import pos_tag
 
 import argparse
 
@@ -27,9 +23,9 @@ class Opera:
 
     def getSentences(self):
         """ tokenize corpus by sentence """
-        self.sentences = sent_tokenize(self.corpus)
+        self.sentences = sent_tokenize(score.corpus)        
 
-
+    
     def getWords(self, preserveSpaces = True):
         """ tokenize corpus sentences by word """
         self.words = []
@@ -45,27 +41,32 @@ class Opera:
                 words = word_tokenize(sentence)
                 self.words.append(words)
         self.preserveSpaces = preserveSpaces
-
-
-#     def getPOS(self):
-#         """ filter out whitespace (if there is any) from tokens
-#             output whitespace, in original location, to self.spaces
-#             run parts of speech analysis on non-whitespace tokens
-#             converts and stores output as 2d list
-#             [ token, pos ] at self.pos """
-#         pos_prep = []
-#         if self.preserveSpaces == False:
-#             pos = pos_tag(self.tokens)
-#             self.pos = list(map(list, pos))
-#         elif self.preserveSpaces == True:
-#             size = len(self.tokens)
-#             self.spaces = [None] * size
-#             step = 0
-#             for i in self.tokens:
-#                 if i.isspace() != True:
-#                     pos_prep.append(i)
-#                 else:
-#                     self.spaces[step] = i
-#                 step+=1
-#             pos = pos_tag(pos_prep)
-#             self.pos = list(map(list, pos))
+    
+    def getPOS(self):
+        """ parts of speech analysis
+            TODO:
+                1. if preserveSpaces
+        """
+        self.processedCorpus = []
+        
+        if self.preserveSpaces == False:
+            print("removing spaces")
+        elif self.preserveSpaces == True:
+            # print("preserving spaces")
+            sentenceStep = 0
+            processedSentences = []
+            for sentence in self.sentences:
+                tokenizedSentence = word_tokenize(sentence)
+                posSentence = pos_tag(tokenizedSentence)                
+                processedSentence = []
+                for word in self.words[sentenceStep]:
+                    if word.isspace() == False:
+                        posWord = list(posSentence.pop(0))
+                        processedSentence.append([posWord[0], {"pos": posWord[1]}])
+                    elif word.isspace() == True:
+                        processedSentence.append(word)
+                self.processedCorpus.append(processedSentence)
+                sentenceStep+=1
+                # print("~~~ no more words in sentence ~~~")
+            # print("*** no more sentences in corpus ***")
+            # print()
