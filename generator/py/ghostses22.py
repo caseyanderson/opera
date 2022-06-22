@@ -1,7 +1,7 @@
 """
 UNTITLED (score generator) by Casey Anderson
 
-usage: python3 opera.py --ws True
+usage: python3 ghostses22.py --ws True
 
 """
 
@@ -15,7 +15,7 @@ from os import chdir, mkdir
 
 import argparse
 
-class Opera:
+class Ghostses:
     
     def __init__(self, filename):
         """ make a score object, read the corpus into object """
@@ -187,6 +187,7 @@ def main():
         score.categorizePOS(category, posKeysTags[category])
         score.styleCategoriesPOS4Layer(category)
         score.renderer(category)
+        print("test")
 
 if __name__ == '__main__':
     main()
