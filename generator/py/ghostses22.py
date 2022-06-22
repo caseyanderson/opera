@@ -1,5 +1,7 @@
 """
-UNTITLED (score generator) by Casey Anderson
+ghostses22 (score generator) by Casey Anderson
+
+6/21/22 by Casey Anderson
 
 usage: python3 ghostses22.py --ws True
 
@@ -161,9 +163,9 @@ def main():
     args = parser.parse_args()
     
     # setup
-    score = Opera("/home/cta/opera/corpora/SteinGlazedNickel.txt")
+    score = Ghostses(args.crps)
     score.getSentences()
-    score.getWords(preserveSpaces=True)
+    score.getWords(preserveSpaces=args.ws)
     score.getTagsPOS()
     score.proto() # make the prototype dir
     
@@ -187,7 +189,6 @@ def main():
         score.categorizePOS(category, posKeysTags[category])
         score.styleCategoriesPOS4Layer(category)
         score.renderer(category)
-        print("test")
 
 if __name__ == '__main__':
     main()
