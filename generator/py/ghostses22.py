@@ -7,7 +7,6 @@ usage: python3 ghostses22.py --ws True
 
 """
 
-from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk import pos_tag
 from itertools import chain

@@ -1,7 +1,13 @@
 """
-UNTITLED (score generator) by Casey Anderson
+opera (score generator) by Casey Anderson
 
-usage: python3 opera.py --ws True
+based on ghostses22.py
+
+IN PROGRESS
+
+TODO
+* add stopword support
+* add syllable counting
 
 """
 
@@ -161,9 +167,9 @@ def main():
     args = parser.parse_args()
     
     # setup
-    score = Opera("/home/cta/opera/corpora/SteinGlazedNickel.txt")
+    score = Opera(args.crps)
     score.getSentences()
-    score.getWords(preserveSpaces=True)
+    score.getWords(preserveSpaces=args.ws)
     score.getTagsPOS()
     score.proto() # make the prototype dir
     
