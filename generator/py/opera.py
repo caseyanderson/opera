@@ -106,18 +106,6 @@ class Opera:
                             self.processedCorpus[sentenceCounter][wordCounter][1]["categoryPOS"] = category
                     wordCounter+=1
                 sentenceCounter+=1
-    
-    def labelStopWords(self):
-        stop_words = set(stopwords.words('english'))
-        
-        for sentence in self.processedCorpus:
-            for word in sentence:
-                if type(word) is list:
-                    print(word)
-                elif word.isspace() == True:
-                    print("a space")
-                else:
-                    print("A PROBLEM!")
 
     
     def styleCategoriesPOS4Layer(self, category):
