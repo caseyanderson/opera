@@ -78,6 +78,20 @@ class Opera:
                 sentenceStep+=1
     
     
+    def labelStopWords(self):
+        """ label if word is present in nltk.corpus English language stop words corpus """
+        
+        stop_words = set(stopwords.words('english'))
+        
+        for sentence in self.processedCorpus:
+            for word in sentence:
+                if type(word) is list:
+                    if word[0] in stop_words:
+                        word[1]["stopWord"] = True
+                    elif word[0] not in stop_words:
+                        word[1]["stopWord"] = False
+    
+    
     def categorizePOS(self, category, posSymbols):
         """ use parts of speech tags to group words into parts of speech categories """
         
@@ -93,6 +107,18 @@ class Opera:
                     wordCounter+=1
                 sentenceCounter+=1
     
+    def labelStopWords(self):
+        stop_words = set(stopwords.words('english'))
+        
+        for sentence in self.processedCorpus:
+            for word in sentence:
+                if type(word) is list:
+                    print(word)
+                elif word.isspace() == True:
+                    print("a space")
+                else:
+                    print("A PROBLEM!")
+
     
     def styleCategoriesPOS4Layer(self, category):
         """ generate html tags for styling per category """
