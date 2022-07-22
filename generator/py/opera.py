@@ -6,8 +6,12 @@ based on ghostses22.py
 IN PROGRESS
 
 TODO
-* add stopword support
 * add syllable counting
+* hyphenation?
+
+Later
+* injest pdfs
+* render to pdf from software not browser
 
 """
 
@@ -158,9 +162,9 @@ class Opera:
         """
         
         thedir = "/home/cta/opera/generator/html"
-        proto = datetime.now().strftime("%m%d%Y_%H%M%S")
+        date = datetime.now().strftime("%m%d%Y-%H%M%S")
         name = Path(self.filename).stem
-        path = "".join([str(name), "-", str(proto)])
+        path = "-".join([str(name), date])
         chdir(thedir)
         try:
             mkdir(path)
@@ -185,6 +189,7 @@ def main():
     score.getSentences()
     score.getWords(preserveSpaces=args.ws)
     score.getTagsPOS()
+    score.labelStopWords()
     score.proto() # make the prototype dir
     
     # make the posKeysTags dictionary
